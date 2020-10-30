@@ -38,12 +38,25 @@ assignment_list = []
 for result in soup.find_all("div", class_="card rounded"):
     assignment = dict()
     assignment['title'] = result.find('h3', class_="name").string
-    desc_list = result.find('div', class_="description card-body").text.strip().split('\n')
-    desc_list = [unicodedata.normalize("NFKD", i) for i in desc_list if i] 
-    assignment['due_date'] = desc_list[0]
-    assignment['type'] = desc_list[1]
-    assignment['description'] = desc_list[2]
-    assignment['class'] = desc_list[3]
+    # print([" ".join(i.get_text().split()) for i in result.find('div', class_="description card-body").find_all('div', class_='row')])
+    for item in result.find('div', class_="description card-body").find_all('div', class_='row'):
+        # print(item.prettify())
+        if item.find('i')['title'] == 'When':
+            description = ' '.join(item.select_one('.col-xs-11').get_text().split())
+            assignment['due date'] = description
+
+        if item.find('i')['title'] == 'Event type':
+            description = ' '.join(item.select_one('.col-xs-11').get_text().split())
+            assignment['event type'] = description
+
+        if item.find('i')['title'] == 'Description':
+            description = ' '.join(item.select_one('.col-xs-11').get_text().split())
+            print(description)
+            assignment['description'] = description
+
+        if item.find('i')['title'] == 'Course':
+            description = ' '.join(item.select_one('.col-xs-11').get_text().split())
+            assignment['course'] = description
     assignment_list.append(assignment)
 
 print(assignment_list)
