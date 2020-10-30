@@ -1,0 +1,15 @@
+[
+    {
+        "title": "Attendance",
+        "due date": "Today, 9:00 AM » 11:30 AM",
+        "event type": "Course event",
+        "course": "Matematika Diskrit (2020106507) / (503)"
+    },
+    {
+        "title": "UTS is due",
+        "due date": "Thursday, 5 November, 6:00 AM",
+        "event type": "Course event",
+        "description": "Soal UTS: Bila diketahui sehelai daun jati yang diasumsikan luasnya 5.000 Cm persegi dan keliling 300 Cm. Daun jati tersebut dilipat menjadi 2 bagian yang sama besar kemudian dipotong. Setelah itu hasil potongannya dilipat lagi sehingga didapat 4 potongan yang sama besar. Langkah ke-1 dan ke-2 diulangi terus sampai langkah ke 250. Tentukan: 1. Tinggi tumpukan daun jati tersebut. Bandingkan dengan jarak antara bumi dan bulan, mana yang lebih tinggi? 2. Ukuran setiap helai dari daun jati yang ditumpuk 3. Gunakan Google Colab (colab.research.google.com) dengan akun student Unnes untuk mengerjakan soal di atas 4. Tentukan kompleksitas waktunya (O besar) 5. Tinjau kembali program Anda pada soal no 3. Perbaiki algoritma dan programnya sehingga didapat kompleksitas waktu (O besar) yang lebih baik.",
+        "course": "Analisis Algoritma (2020106504) / (401)"
+    }
+]
