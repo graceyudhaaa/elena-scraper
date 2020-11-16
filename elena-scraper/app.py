@@ -1,5 +1,5 @@
 import time
-import unicodedata
+import re
 import json
 from bs4 import BeautifulSoup
 from common import *
@@ -15,8 +15,9 @@ driver.switch_to.window(window_after)
 send_keys(username, '//input[@type="email"]', By.XPATH)
 click('/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div', By.XPATH)
 
+# time.sleep(10)
 # isi password
-send_keys(password, "password", By.NAME)
+send_keys(password, "//input[@type='password']", By.XPATH)
 
 # next
 click("/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div", By.XPATH)
@@ -28,12 +29,25 @@ click("//a[contains(@href, 'https://apps.unnes.ac.id/30')]", By.XPATH)
 time.sleep(5)
 driver.switch_to.frame(driver.find_element_by_tag_name("iframe"))
 click("//input[contains(@class, 'btn btn-lg btn-primary')]", By.XPATH)
+
+driver.wait.until(
+        EC.presence_of_element_located((By.ID, 'inst14416'))
+    )
+soup = BeautifulSoup(driver.page_source, 'lxml')
+course_link = soup.select_one('li.mycourses.dropdown').find('ul')
+course_link = course_link.find_all('a', href=True)
+# print(course_link)" ".join(re.findall("[a-zA-Z]+", i.get_text()))
+course_link = {" ".join(re.findall("[a-zA-Z]+", i.get_text())):i.get('href') for i in course_link}
+print(course_link)
+
+'''
 click("//a[contains(text(), 'Go to calendar...')]", By.XPATH)
 
 #making soup
 print('Retrieving Assignment from Calendar')
 soup = BeautifulSoup(driver.page_source, 'lxml')
 
+#get assignment from calendar
 assignment_list = []
 for result in soup.find_all("div", class_="card rounded"):
     assignment = dict()
@@ -59,7 +73,8 @@ for result in soup.find_all("div", class_="card rounded"):
             assignment['course'] = description
     assignment_list.append(assignment)
 
-print(assignment_list)
+# print(assignment_list)
 
 with open('assignment.json', 'w', encoding='utf-8') as f:
     json.dump(assignment_list, f, ensure_ascii=False, indent=4)
+'''

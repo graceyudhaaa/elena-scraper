@@ -19,5 +19,6 @@ def click(selector, By):
 
 def send_keys(keys, selector, By):
     driver.wait.until(
-        EC.presence_of_element_located((By, selector))
+        EC.element_to_be_clickable((By, selector))
     ).send_keys(keys)
+
